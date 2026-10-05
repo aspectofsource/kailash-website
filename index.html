@@ -1,15 +1,15 @@
 <!doctype html>
-<html lang="nl">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Kailash, stoner rock.">
+<meta name="description" content="Kailash, stoner rock band.">
 <title>Kailash</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: zoals een bandsite à la Khan. Vaste menubalk met het woordbeeld, het ronde logo als hero onder een sterrenhemel, daarna rustige secties op zwart. Goud en pruimpaars uit het logo. */
+/* Layout: band site in the spirit of Khan. Sticky bar with the wordmark, the round logo centred as the hero under a starfield, then quiet sections on black. Gold and plum from the logo. */
 :root {
   --void: #0b090c;        /* achtergrond van het logo */
   --panel: #161118;       /* vlakken */
@@ -46,7 +46,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   border-bottom: 1px solid var(--line);
 }
 .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 10px; }
-.nav .brand img { display: block; height: 34px; width: auto; }
+.nav .brand img { display: block; height: 46px; width: auto; }
 .nav ul { display: flex; flex-wrap: wrap; gap: 4px 22px; list-style: none; margin: 0; padding: 0; }
 .nav ul a { color: var(--gold-dim); text-decoration: none; font-family: var(--display); font-size: 1.0625rem; }
 .nav ul a:hover { color: var(--gold); }
@@ -64,8 +64,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   background: radial-gradient(closest-side at 50% 45%, color-mix(in srgb, var(--plum) 70%, transparent), transparent 100%);
   opacity: .8;
 }
-.hero-inner { position: relative; display: grid; justify-items: center; gap: 22px; }
-.hero h1 { margin: 0; }
+.hero-inner { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; gap: 22px; }
+.hero h1 { margin: 0; width: 100%; display: flex; justify-content: center; }
 .hero h1 img {
   display: block; width: min(500px, 100%); max-width: 100%; height: auto;
   border-radius: 50%;
@@ -90,7 +90,7 @@ h2 { font-family: var(--display); font-weight: 400; font-size: clamp(2.25rem, 6v
 h3 { font-family: var(--display); font-weight: 400; font-size: 1.5rem; line-height: 1.15; margin: 0; }
 p { margin: 0; }
 .muted { color: var(--gold-dim); }
-.wordmark { display: inline-block; height: .95em; width: auto; vertical-align: -0.12em; }
+.wordmark { display: inline-block; height: 1.5em; width: auto; vertical-align: -0.4em; }
 
 /* over ons */
 .about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: clamp(28px, 6vw, 72px); align-items: start; }
@@ -136,18 +136,18 @@ textarea { min-height: 130px; resize: vertical; }
 
 footer { border-top: 1px solid var(--line); padding-block: 36px; color: var(--gold-dim); font-size: .9375rem; }
 footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; }
-footer img { height: 26px; width: auto; display: block; opacity: .8; }
+footer img { height: 44px; width: auto; display: block; opacity: .8; }
 </style>
 <style>html{color-scheme:dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
 
-<nav class="nav" aria-label="Hoofdmenu">
+<nav class="nav" aria-label="Main menu">
   <div class="wrap">
     <a class="brand" href="#top"><img src="assets/wordmark.png" alt="Kailash"></a>
     <ul>
-      <li><a href="#over">Over ons</a></li>
-      <li><a href="#muziek">Muziek</a></li>
+      <li><a href="#over">About</a></li>
+      <li><a href="#muziek">Music</a></li>
       <li><a href="#live">Live</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -166,8 +166,8 @@ footer img { height: 26px; width: auto; display: block; opacity: .8; }
     <h1><img src="assets/logo.jpg" alt="Kailash" width="1254" height="1254"></h1>
     <p class="tagline">Stoner rock</p>
     <div class="btns">
-      <a class="btn solid" href="#nieuwsbrief">Blijf op de hoogte</a>
-      <a class="btn" href="#contact">Boek ons</a>
+      <a class="btn solid" href="#nieuwsbrief">Stay in the loop</a>
+      <a class="btn" href="#contact">Book us</a>
     </div>
   </div>
 </header>
@@ -176,17 +176,17 @@ footer img { height: 26px; width: auto; display: block; opacity: .8; }
   <section id="over">
     <div class="wrap about">
       <div>
-        <p class="eyebrow">Over ons</p>
-        <h2>Wie is <img class="wordmark" src="assets/wordmark.png" alt="Kailash"></h2>
+        <p class="eyebrow">About</p>
+        <h2>Who is <img class="wordmark" src="assets/wordmark.png" alt="Kailash"></h2>
       </div>
       <div class="about-text">
-        <p>Kailash is een nieuwe stoner rock band. Zware, trage riffs, fuzz tot de versterkers kraken en nummers die de tijd nemen om op te bouwen.</p>
-        <p>De naam komt van de berg Kailash in Tibet: 6638 meter hoog, nooit beklommen, en voor miljoenen pelgrims het middelpunt van de wereld. Die berg staat ook in ons logo.</p>
+        <p>Kailash is a new stoner rock band. Heavy, slow riffs, fuzz until the amps crack, and songs that take their time to build.</p>
+        <p>The name comes from Mount Kailash in Tibet: 6,638 metres high, never climbed, and for millions of pilgrims the centre of the world. The mountain is on our logo too.</p>
         <dl class="facts">
           <dt>Genre</dt><dd>Stoner rock</dd>
-          <dt>Opgericht</dt><dd>2026</dd>
-          <dt>Uit</dt><dd><span class="placeholder">jullie woonplaats</span></dd>
-          <dt>Bezetting</dt><dd><span class="placeholder">namen en instrumenten</span></dd>
+          <dt>Formed</dt><dd>2026</dd>
+          <dt>From</dt><dd><span class="placeholder">your hometown</span></dd>
+          <dt>Line-up</dt><dd><span class="placeholder">names and instruments</span></dd>
         </dl>
       </div>
     </div>
@@ -198,13 +198,13 @@ footer img { height: 26px; width: auto; display: block; opacity: .8; }
 
   <section id="muziek">
     <div class="wrap">
-      <p class="eyebrow">Muziek &amp; live</p>
-      <h2>De eerste riffs zijn onderweg</h2>
+      <p class="eyebrow">Music &amp; live</p>
+      <h2>The first riffs are on their way</h2>
       <div class="split">
         <div class="panel">
           <svg class="icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="20" cy="20" r="17"/><circle cx="20" cy="20" r="6"/><circle cx="20" cy="20" r="1.5" fill="currentColor"/><path d="M20 3v5M20 32v5"/></svg>
-          <h3>Muziek</h3>
-          <p class="muted">We werken aan onze eerste opnames. Zodra er iets uit is, vind je het hier en op de streamingdiensten.</p>
+          <h3>Music</h3>
+          <p class="muted">We are working on our first recordings. As soon as something is out, you will find it here and on the streaming platforms.</p>
           <div class="links">
             <a href="https://open.spotify.com" target="_blank" rel="noopener">Spotify</a>
             <a href="https://bandcamp.com" target="_blank" rel="noopener">Bandcamp</a>
@@ -213,9 +213,9 @@ footer img { height: 26px; width: auto; display: block; opacity: .8; }
         </div>
         <div class="panel" id="live">
           <svg class="icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 34L20 6l16 28Z"/><path d="M14 17l6 3 6-3"/><path d="M2 34h36"/></svg>
-          <h3>Optredens</h3>
-          <p class="muted">Nog geen shows gepland. Organiseer je een avond, een kroegpodium of een festival? We spelen graag.</p>
-          <div class="links"><a href="#contact">Vraag ons aan</a></div>
+          <h3>Shows</h3>
+          <p class="muted">No shows planned yet. Putting on a night, a bar stage or a festival? We would love to play.</p>
+          <div class="links"><a href="#contact">Book us</a></div>
         </div>
       </div>
     </div>
@@ -223,12 +223,12 @@ footer img { height: 26px; width: auto; display: block; opacity: .8; }
 
   <section class="news" id="nieuwsbrief">
     <div class="wrap">
-      <p class="eyebrow">Nieuwsbrief</p>
-      <h2 style="margin-bottom:0">Hoor het als eerste</h2>
-      <p class="muted">Laat je e-mailadres achter. Je krijgt een bericht zodra onze eerste nummers uitkomen en wanneer we ergens spelen.</p>
+      <p class="eyebrow">Newsletter</p>
+      <h2 style="margin-bottom:0">Be the first to hear</h2>
+      <p class="muted">Leave your email address. You will get a message when our first songs come out and when we play somewhere.</p>
       <form id="newsletter" novalidate>
-        <input id="n-email" type="email" autocomplete="email" placeholder="jouw@email.nl" aria-label="E-mailadres">
-        <button class="btn solid" type="submit">Aanmelden</button>
+        <input id="n-email" type="email" autocomplete="email" placeholder="you@email.com" aria-label="Email address">
+        <button class="btn solid" type="submit">Sign up</button>
       </form>
       <p class="status" id="n-status" role="status"></p>
     </div>
@@ -239,17 +239,17 @@ footer img { height: 26px; width: auto; display: block; opacity: .8; }
       <div class="contact-lines">
         <div>
           <p class="eyebrow">Contact</p>
-          <h2 style="margin-bottom:12px">Boekingen &amp; vragen</h2>
-          <p class="muted">Voor optredens, samenwerkingen of gewoon een berichtje.</p>
+          <h2 style="margin-bottom:12px">Bookings &amp; questions</h2>
+          <p class="muted">For shows, collaborations or just a message.</p>
         </div>
-        <div><span class="label">E-mail</span><span class="value placeholder">info@jullieband.nl</span></div>
+        <div><span class="label">E-mail</span><span class="value placeholder">info@yourband.com</span></div>
         <div><span class="label">Instagram</span><span class="value placeholder">@kailash</span></div>
       </div>
       <form id="booking" novalidate>
-        <label for="c-name">Naam<input id="c-name" autocomplete="name"></label>
+        <label for="c-name">Name<input id="c-name" autocomplete="name"></label>
         <label for="c-email">E-mail<input id="c-email" type="email" autocomplete="email"></label>
-        <label for="c-msg">Bericht<textarea id="c-msg"></textarea></label>
-        <button class="btn solid" type="submit">Verstuur</button>
+        <label for="c-msg">Message<textarea id="c-msg"></textarea></label>
+        <button class="btn solid" type="submit">Send</button>
         <p class="status" id="c-status" role="status"></p>
       </form>
     </div>
@@ -265,7 +265,7 @@ footer img { height: 26px; width: auto; display: block; opacity: .8; }
 
 <script>
 (() => {
-  // ---------- sterrenhemel achter het logo ----------
+  // ---------- starfield behind the logo ----------
   const cv = document.getElementById('stars'), ctx = cv.getContext('2d');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   let W, H, stars = [];
@@ -289,22 +289,22 @@ footer img { height: 26px; width: auto; display: block; opacity: .8; }
   size(); requestAnimationFrame(draw);
   addEventListener('resize', () => { size(); if (reduce) draw(0); });
 
-  // ---------- formulieren: nog niet gekoppeld ----------
+  // ---------- forms: not connected yet ----------
   const valid = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
   document.getElementById('newsletter').addEventListener('submit', e => {
     e.preventDefault();
     const st = document.getElementById('n-status'), v = document.getElementById('n-email').value.trim();
     st.textContent = valid(v)
-      ? 'De nieuwsbrief is nog niet gekoppeld. Er is niets verstuurd.'
-      : 'Vul een geldig e-mailadres in.';
+      ? 'The newsletter is not connected yet. Nothing was sent.'
+      : 'Enter a valid email address.';
   });
   document.getElementById('booking').addEventListener('submit', e => {
     e.preventDefault();
     const st = document.getElementById('c-status');
     if (!document.getElementById('c-name').value.trim() || !document.getElementById('c-msg').value.trim()) {
-      st.textContent = 'Vul je naam en een bericht in.'; return;
+      st.textContent = 'Enter your name and a message.'; return;
     }
-    st.textContent = 'Dit formulier is nog niet gekoppeld. Er is niets verstuurd.';
+    st.textContent = 'This form is not connected yet. Nothing was sent.';
   });
 })();
 </script>
