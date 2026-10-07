@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Kailash, a stoner rock pilgrimage to the holy mountain. Dutch psychedelic desert grooves.">
 <title>Kailash</title>
+<link rel="canonical" href="https://www.kailashband.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kailash">
+<meta property="og:title" content="Kailash">
+<meta property="og:description" content="A stoner rock pilgrimage to the holy mountain.">
+<meta property="og:url" content="https://www.kailashband.com/">
+<meta property="og:image" content="https://www.kailashband.com/assets/logo.jpg">
+<meta property="og:image:width" content="1254">
+<meta property="og:image:height" content="1254">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
@@ -253,7 +263,7 @@ footer img { height: 44px; width: auto; display: block; opacity: .8; }
           <h2 style="margin-bottom:12px">Bookings &amp; questions</h2>
           <p class="muted">For shows, collaborations or just a message.</p>
         </div>
-        <div><span class="label">E-mail</span><span class="value">info@kailashband.com</span></div>
+        <div><span class="label">E-mail</span><span class="value"><a href="mailto:info@kailashband.com">info@kailashband.com</a></span></div>
         <div><span class="label">Facebook</span><span class="value"><a href="https://www.facebook.com/kailashbandnl" target="_blank" rel="noopener">@kailashbandnl</a></span></div>
         <div><span class="label">Instagram</span><span class="value"><a href="https://www.instagram.com/kailashbandnl/" target="_blank" rel="noopener">@kailashbandnl</a></span></div>
       </div>
@@ -302,7 +312,7 @@ footer img { height: 44px; width: auto; display: block; opacity: .8; }
   size(); requestAnimationFrame(draw);
   addEventListener('resize', () => { size(); if (reduce) draw(0); });
 
-  // ---------- contact form: sent to info@kailashband.com via Web3Forms (newsletter not connected yet) ----------
+  // ---------- both forms: sent to info@kailashband.com via Web3Forms (newsletter sign-ups land in the inbox until a mailing service is chosen) ----------
   const FORM_KEY = '4ffc69f6-922b-4551-a96c-6f55199d74b8'; // Web3Forms access key (public by design)
   const valid = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
   async function send(data, st, btn) {
@@ -322,12 +332,13 @@ footer img { height: 44px; width: auto; display: block; opacity: .8; }
       return false;
     } finally { btn.disabled = false; }
   }
-  document.getElementById('newsletter').addEventListener('submit', e => {
+  document.getElementById('newsletter').addEventListener('submit', async e => {
     e.preventDefault();
-    const st = document.getElementById('n-status'), v = document.getElementById('n-email').value.trim();
-    st.textContent = valid(v)
-      ? 'The newsletter is not connected yet. Nothing was sent.'
-      : 'Enter a valid email address.';
+    const f = e.target, st = document.getElementById('n-status'), v = document.getElementById('n-email').value.trim();
+    if (!valid(v)) { st.textContent = 'Enter a valid email address.'; return; }
+    if (await send({ subject: 'Newsletter sign-up: ' + v, email: v, message: 'Please add ' + v + ' to the Kailash newsletter.' }, st, f.querySelector('button'))) {
+      f.reset(); st.textContent = 'Thanks! You are on the list.';
+    }
   });
   document.getElementById('booking').addEventListener('submit', async e => {
     e.preventDefault();
