@@ -236,6 +236,7 @@ footer img { height: 44px; width: auto; display: block; opacity: .8; }
       <h2 style="margin-bottom:0">Be the first to hear</h2>
       <p class="muted">Leave your email address. You will get a message when our first songs come out and when we play somewhere.</p>
       <form id="newsletter" novalidate>
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
         <input id="n-email" type="email" autocomplete="email" placeholder="you@email.com" aria-label="Email address">
         <button class="btn solid" type="submit">Sign up</button>
       </form>
@@ -255,6 +256,7 @@ footer img { height: 44px; width: auto; display: block; opacity: .8; }
         <div><span class="label">Instagram</span><span class="value">@kailashband</span></div>
       </div>
       <form id="booking" novalidate>
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
         <label for="c-name">Name<input id="c-name" autocomplete="name"></label>
         <label for="c-email">E-mail<input id="c-email" type="email" autocomplete="email"></label>
         <label for="c-msg">Message<textarea id="c-msg"></textarea></label>
@@ -298,22 +300,45 @@ footer img { height: 44px; width: auto; display: block; opacity: .8; }
   size(); requestAnimationFrame(draw);
   addEventListener('resize', () => { size(); if (reduce) draw(0); });
 
-  // ---------- forms: not connected yet ----------
+  // ---------- forms: sent to info@kailashband.com via Web3Forms ----------
+  const FORM_KEY = ''; // Web3Forms access key (public by design)
   const valid = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-  document.getElementById('newsletter').addEventListener('submit', e => {
+  async function send(data, st, btn) {
+    if (!FORM_KEY) { st.textContent = 'This form is not connected yet. Nothing was sent.'; return false; }
+    btn.disabled = true; st.textContent = 'Sending\u2026';
+    try {
+      const r = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ access_key: FORM_KEY, from_name: 'kailashband.com', ...data })
+      });
+      const j = await r.json();
+      if (!j.success) throw new Error(j.message);
+      return true;
+    } catch (err) {
+      st.textContent = 'Something went wrong. Please mail us at info@kailashband.com.';
+      return false;
+    } finally { btn.disabled = false; }
+  }
+  document.getElementById('newsletter').addEventListener('submit', async e => {
     e.preventDefault();
-    const st = document.getElementById('n-status'), v = document.getElementById('n-email').value.trim();
-    st.textContent = valid(v)
-      ? 'The newsletter is not connected yet. Nothing was sent.'
-      : 'Enter a valid email address.';
-  });
-  document.getElementById('booking').addEventListener('submit', e => {
-    e.preventDefault();
-    const st = document.getElementById('c-status');
-    if (!document.getElementById('c-name').value.trim() || !document.getElementById('c-msg').value.trim()) {
-      st.textContent = 'Enter your name and a message.'; return;
+    const f = e.target, st = document.getElementById('n-status'), v = document.getElementById('n-email').value.trim();
+    if (!valid(v)) { st.textContent = 'Enter a valid email address.'; return; }
+    if (f.botcheck.checked) return;
+    if (await send({ subject: 'New newsletter signup', email: v, message: 'Newsletter signup: ' + v }, st, f.querySelector('button'))) {
+      f.reset(); st.textContent = 'Thanks! You are on the list.';
     }
-    st.textContent = 'This form is not connected yet. Nothing was sent.';
+  });
+  document.getElementById('booking').addEventListener('submit', async e => {
+    e.preventDefault();
+    const f = e.target, st = document.getElementById('c-status');
+    const name = document.getElementById('c-name').value.trim(), email = document.getElementById('c-email').value.trim(), msg = document.getElementById('c-msg').value.trim();
+    if (!name || !msg) { st.textContent = 'Enter your name and a message.'; return; }
+    if (!valid(email)) { st.textContent = 'Enter a valid email address, so we can reply.'; return; }
+    if (f.botcheck.checked) return;
+    if (await send({ subject: 'Website message from ' + name, name, email, message: msg }, st, f.querySelector('button'))) {
+      f.reset(); st.textContent = 'Thanks! Your message was sent. We will get back to you soon.';
+    }
   });
 })();
 </script>
