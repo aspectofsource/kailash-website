@@ -300,7 +300,7 @@ footer img { height: 44px; width: auto; display: block; opacity: .8; }
   addEventListener('resize', () => { size(); if (reduce) draw(0); });
 
   // ---------- contact form: sent to info@kailashband.com via Web3Forms (newsletter not connected yet) ----------
-  const FORM_KEY = ''; // Web3Forms access key (public by design)
+  const FORM_KEY = '4ffc69f6-922b-4551-a96c-6f55199d74b8'; // Web3Forms access key (public by design)
   const valid = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
   async function send(data, st, btn) {
     if (!FORM_KEY) { st.textContent = 'This form is not connected yet. Nothing was sent.'; return false; }
